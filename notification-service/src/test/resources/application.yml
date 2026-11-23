@@ -15,7 +15,6 @@ spring:
   data:
     mongodb:
       database: piggymetrics
-      port: 0
   mail:
     host: smtp.gmail.com
     port: 465
@@ -31,3 +30,28 @@ spring:
             fallback: false
           ssl:
             enable: true
+  security:
+    oauth2:
+      client:
+        registration:
+          notification-service:
+            client-id: notification-service
+            client-secret: password
+            authorization-grant-type: client_credentials
+            scope: server
+        provider:
+          notification-service:
+            token-uri: http://localhost:5000/uaa/oauth2/token
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:5000/uaa/oauth2/jwks
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 7.0.14

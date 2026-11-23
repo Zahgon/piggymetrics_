@@ -2,4 +2,15 @@ spring:
   data:
     mongodb:
       database: piggymetrics
-      port: 0
+
+# The secrets the services present to this one; the deployment supplies them from the
+# environment.
+ACCOUNT_SERVICE_PASSWORD: password
+STATISTICS_SERVICE_PASSWORD: password
+NOTIFICATION_SERVICE_PASSWORD: password
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 7.0.14

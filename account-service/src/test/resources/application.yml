@@ -2,4 +2,28 @@ spring:
   data:
     mongodb:
       database: piggymetrics
-      port: 0
+  security:
+    oauth2:
+      client:
+        registration:
+          account-service:
+            client-id: account-service
+            client-secret: password
+            authorization-grant-type: client_credentials
+            scope: server
+        provider:
+          account-service:
+            token-uri: http://localhost:5000/uaa/oauth2/token
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:5000/uaa/oauth2/jwks
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 7.0.14
